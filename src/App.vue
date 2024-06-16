@@ -13,7 +13,7 @@
           <q-btn flat round dense icon="menu" class="q-mr-sm" @click="toggleLeftDrawer" />
 
           <q-btn flat dense @click="toggleHomeView" to="/" exact active-class="text-primary" v-ripple>
-            <i class="fas fa-user" style="padding-right: 10px;"></i> M. Arif Ahmad
+            <i class="fas fa-user" style="padding-right: 10px;"></i> M~ Arif Ahmad Nasution
           </q-btn>
         </q-toolbar>
         <q-toolbar style="padding-top: 10px; margin-left: 50px;">
