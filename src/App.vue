@@ -1,20 +1,12 @@
 <template>
   <div class="q-pa-md">
-    <q-layout view="lHh lpr lFf" container style="height: 100vh; color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: url('/src/assets/image/JEPANGMALAM.jpg') no-repeat;
-
-    background-size: cover;
-    background-position: center;" class="shadow-2 rounded-borders">
+    <q-layout class="body" view="lHh lpr lFf" container>
       <q-header v-if="!leftDrawerOpen" reveal elevated style="color: white !important;">
         <q-toolbar>
           <q-btn flat round dense icon="menu" class="q-mr-sm" @click="toggleLeftDrawer" />
 
           <q-btn flat dense @click="toggleHomeView" to="/" exact active-class="text-primary" v-ripple>
-            <i class="fas fa-user" style="padding-right: 10px;"></i> M~ Arif Ahmad Nasution
+            <i class="fas fa-user" style="padding-right: 10px;"></i> M. Arif Ahmad Nasution
           </q-btn>
         </q-toolbar>
         <q-toolbar style="padding-top: 10px; margin-left: 50px;">
@@ -160,6 +152,17 @@ export default {
 </script>
 
 <style >
+.body{
+  height: 100vh; color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('/src/assets/image/JEPANGMALAM.jpg') no-repeat;
+
+    background-size: cover;
+    background-position: center;
+}
 .custom-drawer {
   background-color: rgba(0, 0, 255, 0.758);
   color: white;
