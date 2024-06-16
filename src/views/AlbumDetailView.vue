@@ -1,17 +1,9 @@
 <template>
   <div class="album-detail">
-    <h1 style=" background:transparent;
-    border: 2px solid rgb(255, 255, 255, .2);
-    border-radius: 20px;
-    backdrop-filter: blur(20px);
-    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
-    width: 300px;
-    padding-left: 20px;   
-    color: aquamarine;
-" class="title">Album Detail</h1>
+    <h1 class="title">Album Detail</h1>
     <button @click="goToAlbum" class="back-button"> <i class="fas fa-arrow-left"></i> Back to Albums</button>
     <div v-if="album">
-      <h2 style="color: aliceblue; background: transparent;"class="album-title"> {{ album.title }}</h2>
+      <h2 style="color: aliceblue;" class="album-title">{{ album.title }}</h2>
       <div class="photo-thumbnails">
         <div class="photo-thumbnail" v-for="photo in album.photos" :key="photo.id" @click="showFullSize(photo)">
           <img :src="photo.thumbnailUrl" :alt="photo.title" class="thumbnail-img">
@@ -25,7 +17,7 @@
       </div>
     </div>
     <div v-else>
-      <p style="color: white;">Loading...</p>
+      <p>Loading...</p>
     </div>
   </div>
 </template>
@@ -48,10 +40,19 @@ export default {
   methods: {
     async fetchAlbumDetail() {
       try {
-        const response = await axios.get(`https://jsonplaceholder.typicode.com/albums/${this.$route.params.albumId}`);
+        const albumId = this.$route.params.albumId;
+        const response = await axios.get(`https://jsonplaceholder.typicode.com/albums/${albumId}`);
         const albumData = response.data;
-        const photoResponse = await axios.get(`https://jsonplaceholder.typicode.com/photos?albumId=${albumData.id}`);
-        albumData.photos = photoResponse.data;
+
+        const photoResponse = await axios.get(`https://jsonplaceholder.typicode.com/photos?albumId=${albumId}`);
+        const photos = photoResponse.data.map(photo => ({
+          id: photo.id,
+          title: photo.title,
+          thumbnailUrl: photo.thumbnailUrl,
+          url: photo.url  // Include the full-size URL for each photo
+        }));
+
+        albumData.photos = photos;
         this.album = albumData;
       } catch (error) {
         console.error('Error fetching album detail:', error);
@@ -64,10 +65,10 @@ export default {
     hideFullSize() {
       this.isFullSize = false;
       this.fullSizePhoto = null;
-    },  goToAlbum(){
-      this.$router.push('/albums');
-      this.toggleLeftDrawer();
     },
+    goToAlbum() {
+      this.$router.push('/albums');
+    }
   }
 };
 </script>
@@ -79,10 +80,20 @@ export default {
   padding: 20px;
 }
 
+
 .title {
   font-size: 50px;
   color: #18c221a7;
   margin-bottom: 20px;
+  background:transparent;
+    border: 2px solid rgb(255, 255, 255, .2);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    width: max-content;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: rgb(8, 228, 154);
 }
 
 .back-button {
@@ -100,10 +111,11 @@ export default {
   font-size: 20px;
   color: #333;
   margin-bottom: 20px;
-
- 
+  background:transparent;
+    border: 2px solid rgb(255, 255, 255, .2);
+    border-radius: 20px;
     backdrop-filter: blur(20px);
-    text-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
 }
 
 .photo-thumbnails {
