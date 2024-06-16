@@ -5,7 +5,8 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url('/src/assets/image/JEPANGMALAM.jpg') no-repeat; 
+    background: url('/src/assets/image/JEPANGMALAM.jpg') no-repeat;
+
     background-size: cover;
     background-position: center;" class="shadow-2 rounded-borders">
       <q-header v-if="!leftDrawerOpen" reveal elevated style="color: white !important;">
@@ -158,7 +159,7 @@ export default {
 }
 </script>
 
-<style>
+<style >
 .custom-drawer {
   background-color: rgba(0, 0, 255, 0.758);
   color: white;
