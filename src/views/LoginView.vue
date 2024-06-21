@@ -19,25 +19,18 @@
     </div>
   </template>
   
-  <script>
-  export default {
-    data() {
-      return {
-        username: '',
-        password: ''
-      };
-    },
-    methods: {
-      login() {
-        // Lakukan logika login di sini
-        // Contoh: validasi data, panggil API, dll.
-        console.log('Username:', this.username);
-        console.log('Password:', this.password);
-        
-        // Setelah login berhasil, Anda dapat mengarahkan pengguna ke halaman yang sesuai
-        // Contoh: this.$router.push('/dashboard');
-      }
-    }
+  <script setup>
+  import { ref } from 'vue';
+  import { useRouter } from 'vue-router';
+  
+  const username = ref('');
+  const password = ref('');
+  const router = useRouter();
+  
+  const login = () => {
+    console.log('Username:', username.value);
+    console.log('Password:', password.value);
+    
   };
   </script>
   

@@ -93,109 +93,115 @@
     </q-layout>
   </div>
 </template>
-
-<script>
+<script setup>
+import { ref, watch } from 'vue';
+import { useRouter } from 'vue-router';
 import '@fortawesome/fontawesome-free/css/all.css';
 
-export default {
-  data() {
-    return {
-      leftDrawerOpen: false,
-      tugasDropdown: false,
-      tugasDropdownSidebar: false,
-      netlifyUrls: {
-        1: 'https://ahmad-projectcv.netlify.app',
-        2: 'https://your-netlify-site.netlify.app/tugas2',
-        3: 'https://marifahmad.netlify.app',
-        4: 'https://marifahmad-223510434-prapbk.netlify.app',
-        5: 'https://marifahmad-223510434-ppbk-t5-landingp.netlify.app',
-        6: 'https://marifahmadnasution-223510434-t6-inapi.netlify.app',
-        7: 'https://marifahmadnasution-223510434-t7-pinia.netlify.app'
-      }
-    };
-  },
-  methods: {
-    toggleHomeView() {
-      this.$router.push({ name: 'HomeView' });
-    },
-    toggleLeftDrawer() {
-      this.leftDrawerOpen = !this.leftDrawerOpen;
-      if (this.leftDrawerOpen) {
-        this.$refs.leftDrawer.classList.add('drawer-open-animation');
-      } else {
-        this.$refs.leftDrawer.classList.add('drawer-close-animation');
-      }
-    },
-    goToWeather() {
-      this.$router.push('/weather');
-      this.toggleLeftDrawer();
-    },
-    goToTugas(i) {
-      if (i === 2) {
-        this.$router.push({ name: 'Tugas2' });
-      } else {
-        const tugasUrl = this.netlifyUrls[i];
-        if (tugasUrl) {
-          window.location.href = tugasUrl;
-        }
-      }
-      this.tugasDropdown = false;
-      this.tugasDropdownSidebar = false;
-      document.removeEventListener('click', this.hideTugasDropdown);
-      document.removeEventListener('click', this.hideTugasDropdownSidebar);
-    },
-    goToLogout() {
-      this.$router.push('/logout');
-      this.toggleLeftDrawer();
-    },
-    goToLogin() {
-      this.$router.push('/login');
-      this.toggleLeftDrawer();
-    },
-    showTugasDropdown() {
-      this.tugasDropdown = true;
-    },
-    hideTugasDropdown(event) {
-      if (!this.$refs.tugasMenu.contains(event.target)) {
-        this.tugasDropdown = false;
-        document.removeEventListener('click', this.hideTugasDropdown);
-      }
-    },
-    showTugasDropdownSidebar() {
-      this.tugasDropdownSidebar = true;
-    },
-    hideTugasDropdownSidebar(event) {
-      if (!this.$refs.tugasMenu.contains(event.target)) {
-        this.tugasDropdownSidebar = false;
-        document.removeEventListener('click', this.hideTugasDropdownSidebar);
-      }
-    },
-  },
-  watch: {
-    leftDrawerOpen(val) {
-      if (!val) {
-        setTimeout(() => {
-          this.$refs.leftDrawer.classList.remove('drawer-open-animation');
-          this.$refs.leftDrawer.classList.remove('drawer-close-animation');
-        }, 500); 
-      }
-    },
-    tugasDropdown(val) {
-      if (val) {
-        document.addEventListener('click', this.hideTugasDropdown);
-      } else {
-        document.removeEventListener('click', this.hideTugasDropdown);
-      }
-    },
-    tugasDropdownSidebar(val) {
-      if (val) {
-        document.addEventListener('click', this.hideTugasDropdownSidebar);
-      } else {
-        document.removeEventListener('click', this.hideTugasDropdownSidebar);
-      }
-    }
+const router = useRouter();
+const leftDrawerOpen = ref(false);
+const tugasDropdown = ref(false);
+const tugasDropdownSidebar = ref(false);
+
+const netlifyUrls = {
+  1: 'https://ahmad-projectcv.netlify.app',
+  2: 'https://your-netlify-site.netlify.app/tugas2',
+  3: 'https://marifahmad.netlify.app',
+  4: 'https://marifahmad-223510434-prapbk.netlify.app',
+  5: 'https://marifahmad-223510434-ppbk-t5-landingp.netlify.app',
+  6: 'https://marifahmadnasution-223510434-t6-inapi.netlify.app',
+  7: 'https://marifahmadnasution-223510434-t7-pinia.netlify.app'
+};
+
+const toggleHomeView = () => {
+  router.push({ name: 'HomeView' });
+};
+
+const toggleLeftDrawer = () => {
+  leftDrawerOpen.value = !leftDrawerOpen.value;
+  if (leftDrawerOpen.value) {
+    document.querySelector('.left-drawer').classList.add('drawer-open-animation');
+  } else {
+    document.querySelector('.left-drawer').classList.add('drawer-close-animation');
   }
 };
+
+const goToWeather = () => {
+  router.push('/weather');
+  toggleLeftDrawer();
+};
+
+const goToTugas = (i) => {
+  if (i === 2) {
+    router.push({ name: 'Tugas2' });
+  } else {
+    const tugasUrl = netlifyUrls[i];
+    if (tugasUrl) {
+      window.location.href = tugasUrl;
+    }
+  }
+  tugasDropdown.value = false;
+  tugasDropdownSidebar.value = false;
+  document.removeEventListener('click', hideTugasDropdown);
+  document.removeEventListener('click', hideTugasDropdownSidebar);
+};
+
+const goToLogout = () => {
+  router.push('/logout');
+  toggleLeftDrawer();
+};
+
+const goToLogin = () => {
+  router.push('/login');
+  toggleLeftDrawer();
+};
+
+const showTugasDropdown = () => {
+  tugasDropdown.value = true;
+};
+
+const hideTugasDropdown = (event) => {
+  if (!document.querySelector('.tugas-menu').contains(event.target)) {
+    tugasDropdown.value = false;
+    document.removeEventListener('click', hideTugasDropdown);
+  }
+};
+
+const showTugasDropdownSidebar = () => {
+  tugasDropdownSidebar.value = true;
+};
+
+const hideTugasDropdownSidebar = (event) => {
+  if (!document.querySelector('.tugas-menu').contains(event.target)) {
+    tugasDropdownSidebar.value = false;
+    document.removeEventListener('click', hideTugasDropdownSidebar);
+  }
+};
+
+watch(leftDrawerOpen, (val) => {
+  if (!val) {
+    setTimeout(() => {
+      document.querySelector('.left-drawer').classList.remove('drawer-open-animation');
+      document.querySelector('.left-drawer').classList.remove('drawer-close-animation');
+    }, 500);
+  }
+});
+
+watch(tugasDropdown, (val) => {
+  if (val) {
+    document.addEventListener('click', hideTugasDropdown);
+  } else {
+    document.removeEventListener('click', hideTugasDropdown);
+  }
+});
+
+watch(tugasDropdownSidebar, (val) => {
+  if (val) {
+    document.addEventListener('click', hideTugasDropdownSidebar);
+  } else {
+    document.removeEventListener('click', hideTugasDropdownSidebar);
+  }
+});
 </script>
 
 <style scoped>

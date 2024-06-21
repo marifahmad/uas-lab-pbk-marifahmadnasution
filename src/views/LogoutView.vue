@@ -20,34 +20,28 @@
     </div>
   </div>
 </template>
+<script setup>
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
-<script>
-export default {
-  data() {
-    return {
-      isLoggedOut: false
-    };
-  },
-  methods: {
-    logout() {
-      // Lakukan logika logout di sini
-      // Contoh: hapus token, hapus sesi pengguna, dll.
-      console.log('Logout successful'); // Contoh: Tampilkan pesan logout berhasil
-      // Set isLoggedOut menjadi true setelah logout berhasil
-      this.isLoggedOut = true;
-    },
-    ok() {
-      // Redirect ke halaman login atau halaman beranda
-      this.$router.push('/login'); // Ubah '/login' menjadi halaman yang sesuai
-    }
-  }
+const isLoggedOut = ref(false);
+const router = useRouter();
+
+const logout = () => {
+ 
+  console.log('Logout successful'); 
+  isLoggedOut.value = true;
+};
+
+const ok = () => {
+  router.push('/login'); 
 };
 </script>
 
 <style scoped>
 .logout-page {
   text-align: center;
-  background-color: rgba(19, 201, 218, 0.5); /* Warna latar belakang dengan transparansi */
+  background-color: rgba(19, 201, 218, 0.5); 
   position: fixed;
   top: 0;
   left: 0;
@@ -59,10 +53,10 @@ export default {
 }
 
 .logout-successful {
-  background-color: #ffffffd0; /* Warna latar belakang untuk pesan sukses */
+  background-color: #ffffffd0; 
   padding: 20px;
   border-radius: 10px;
-  max-width: 400px; /* Lebar maksimum */
+  max-width: 400px; 
   position: relative;
   margin-top: 200px;
   margin-left: 400px;
@@ -70,7 +64,7 @@ export default {
 
 .logout-header {
   margin-bottom: 30px;
-  color: #000; /* Warna teks */
+  color: #000; 
 }
 
 .logout-button {
@@ -78,22 +72,22 @@ export default {
 }
 
 .submit-button {
-  background-color: #dc3545; /* Warna merah */
+  background-color: #dc3545; 
   color: #fff;
   border: none;
   padding: 10px 20px;
   font-size: 18px;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease; /* Transisi hover */
+  transition: background-color 0.3s ease; 
 }
 
 .submit-button:hover {
-  background-color: #c82333; /* Warna merah lebih gelap saat dihover */
+  background-color: #c82333; 
 }
 
 .ok-button {
-  background-color: #007bff; /* Warna tombol biru */
+  background-color: #007bff; 
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -101,11 +95,11 @@ export default {
   border-radius: 5px;
   cursor: pointer;
   margin-top: 20px;
-  transition: background-color 0.3s ease; /* Transisi hover */
+  transition: background-color 0.3s ease; 
 }
 
 .ok-button:hover {
-  background-color: #0056b3; /* Warna biru lebih gelap saat dihover */
+  background-color: #0056b3; 
 }
 
 .checkmark {
@@ -122,7 +116,7 @@ export default {
   width: 30px;
   height: 30px;
   fill: none;
-  stroke: #28a745; /* Warna hijau */
+  stroke: #28a745; 
   stroke-width: 2;
 }
 
@@ -131,7 +125,7 @@ export default {
   stroke-dashoffset: 166;
   stroke-width: 2;
   stroke-miterlimit: 10;
-  stroke: #28a745; /* Warna hijau */
+  stroke: #28a745; 
   fill: none;
   animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
 }

@@ -4,10 +4,12 @@
     </q-page>
   </template>
   
-  <script>
-  export default {
+  <script setup>
+  import { defineComponent } from 'vue';
+  
+  defineComponent({
     name: 'Tugas2',
-  };
+  });
   </script>
   
   <style scoped>
