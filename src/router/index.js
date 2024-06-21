@@ -2,8 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import AboutView from '../views/AboutView.vue'
 import ContactView from '../views/contactView.vue'
-import TodosView from '../views/TodosView.vue'
-import PostView from '../views/PostView.vue'
+import Weather from '../views/Weather.vue'
+import tugas from '../views/tugas.vue'
+
 import AlbumsView from '../views/AlbumsView.vue'
 import AlbumDetailView from '../views/AlbumDetailView.vue' 
 import LogoutView from '../views/LogoutView.vue'
@@ -21,15 +22,21 @@ const routes = [
     component: ContactView
   },
   {
-    path: '/todos',
-    name: 'todos',
-    component: TodosView
+    path: '/Weather',
+    name: 'Weather',
+    component: Weather
   },
   {
-    path: '/post',
-    name: 'post',
-    component: PostView
+    path: '/tugas',
+    name: 'tugas',
+    component: tugas
   },
+  {
+    path: '/tugas2',
+    name: 'Tugas2',
+    component: () => import('../views/Tugas2.vue') // Assuming you have a component Tugas2.vue
+  },
+
   {
     path: '/albums',
     name: 'albums',

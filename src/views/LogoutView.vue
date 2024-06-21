@@ -1,7 +1,7 @@
 <template>
   <div class="logout-page">
     <div v-if="!isLoggedOut" class="logout-header">
-      <h1 style="color: aliceblue;">Logout</h1>
+      <h1 style="color: aliceblue; margin-top: 200px; margin-left: 430px;">Logout</h1>
       <p style="color: azure;">Are you sure you want to logout?</p>
       <div class="logout-button">
         <button @click="logout" class="submit-button">Logout</button>
@@ -55,8 +55,7 @@ export default {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  
 }
 
 .logout-successful {
@@ -65,6 +64,8 @@ export default {
   border-radius: 10px;
   max-width: 400px; /* Lebar maksimum */
   position: relative;
+  margin-top: 200px;
+  margin-left: 400px;
 }
 
 .logout-header {

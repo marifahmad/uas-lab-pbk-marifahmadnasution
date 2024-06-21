@@ -3,7 +3,7 @@
     <h1 class="title">Album Detail</h1>
     <button @click="goToAlbum" class="back-button"> <i class="fas fa-arrow-left"></i> Back to Albums</button>
     <div v-if="album">
-      <h2 style="color:cyan;" class="album-title">{{ album.title }}</h2>
+      <h2 style="color:aqua;" class="album-title">{{ album.title }}</h2>
       <div class="photo-thumbnails">
         <div class="photo-thumbnail" v-for="photo in album.photos" :key="photo.id" @click="showFullSize(photo)">
           <img :src="photo.thumbnailUrl" :alt="photo.title" class="thumbnail-img">

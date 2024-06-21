@@ -54,6 +54,9 @@
     width: 500px;
     margin-left: 350px;
   }
+  h1{
+    margin-left: 50px;
+  }
   
   .login-header {
     margin-bottom: 30px;
