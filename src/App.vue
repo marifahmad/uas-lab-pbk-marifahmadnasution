@@ -105,7 +105,7 @@ const tugasDropdownSidebar = ref(false);
 
 const netlifyUrls = {
   1: 'https://ahmad-projectcv.netlify.app',
-  2: 'https://your-netlify-site.netlify.app/tugas2',
+  2: 'https://marifahmadn-223510434-lab-t2freetugas.netlify.app',
   3: 'https://marifahmad.netlify.app',
   4: 'https://marifahmad-223510434-prapbk.netlify.app',
   5: 'https://marifahmad-223510434-ppbk-t5-landingp.netlify.app',
